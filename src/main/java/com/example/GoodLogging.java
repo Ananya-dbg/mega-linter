@@ -10,12 +10,19 @@ public class GoodLogging {
 
   private static final Logger LOG = LoggerFactory.getLogger(GoodLogging.class);
 
+  // ✅ FIXED: Added a constructor with a comment inside to satisfy both conflicting PMD rules
+  /**
+   * Explicit constructor to satisfy PMD requirements.
+   */
+  public GoodLogging() {
+    // Declared explicitly for PMD
+  }
+
   /**
    * Processes the incoming data string safely.
    *
    * @param data the input data to process (Marked final to satisfy PMD)
    */
-  // ✅ FIXED: Parameter is final, and no unnecessary constructor is present
   public void processData(final String data) {
     if (data == null) {
       LOG.error("Failed to process data: input data is null");
