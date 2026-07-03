@@ -1,6 +1,5 @@
 name: MegaLinter (PR Checks)
 
-# Trigger exclusively on pull requests targeting your default branch
 on:
   pull_request:
     branches: [ "main", "master" ]
@@ -14,21 +13,19 @@ jobs:
     name: Run MegaLinter
     runs-on: ubuntu-latest
     permissions:
-      security-events: write # Writes security issues to GitHub security tab
-      pull-requests: write   # Allows MegaLinter to write summary comments on the PR
-      statuses: write        # Allows MegaLinter to set pass/fail status checks
-      contents: read         # Allows reading your codebase
+      security-events: write 
+      pull-requests: write   
+      statuses: write        
+      contents: read         
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          # Pulls the full git history so MegaLinter can compare branches and find changed files
           fetch-depth: 0 
 
       - name: Run MegaLinter (Java Flavor)
         uses: oxsecurity/megalinter/flavors/java@v8
         env:
-          # Set to false so it ONLY validates modified files in this PR (fast and targeted)
+          # Crucial: Set to false so it ONLY validates modified files in this PR
           VALIDATE_ALL_CODEBASE: false 
-          # Enables automatic commit annotations and PR comments
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,20 @@
+# MegaLinter Configuration File
+APPLY_FIXES: "none"
+
+# 1. CRUCIAL: Stops MegaLinter from scanning giant generated compiler/dependency folders
+EXCLUDED_DIRECTORIES:
+  - "target"
+  - "build"
+  - ".gradle"
+  - ".m2"
+  - "node_modules"
+
+# 2. Limit to just the Java and Security tools
+ENABLE_LINTERS:
+  - JAVA_CHECKSTYLE
+  - JAVA_PMD
+  - REPO_SEMGREP
+  - SECRET_GITLEAKS
+
+# Use Google's Java Style Guide for Checkstyle
+JAVA_CHECKSTYLE_CONFIG_FILE: "google_checks.xml"
