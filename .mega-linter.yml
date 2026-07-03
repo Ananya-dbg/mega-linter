@@ -16,5 +16,5 @@ ENABLE_LINTERS:
   - REPO_SEMGREP
   - SECRET_GITLEAKS
 
-# Use Google's Java Style Guide for Checkstyle
-JAVA_CHECKSTYLE_CONFIG_FILE: "google_checks.xml"
+# ✅ FIXED: Added leading slash "/" to load built-in Google checks without requiring a local XML file
+JAVA_CHECKSTYLE_CONFIG_FILE: "/google_checks.xml"
